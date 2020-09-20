@@ -1,0 +1,15 @@
+npcs:
+  donator:
+    world: "world"
+    x: 16
+    y: 110
+    z: 16
+    yaw: 0
+    pitch: 0
+  voter:
+    world: "world"
+    x: -16
+    y: 110
+    z: 16
+    yaw: 0
+    pitch: 0
