@@ -1,4 +1,4 @@
-package net.colonymc.hubcore;
+package net.colonymc.colonyhubcore;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,39 +16,39 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import net.colonymc.api.itemstacks.ItemStackBuilder;
-import net.colonymc.api.player.PublicHologram;
+import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
+import net.colonymc.colonyspigotapi.player.PublicHologram;
 import net.colonymc.colonyapi.MainDatabase;
-import net.colonymc.hubcore.commands.AboutCommand;
-import net.colonymc.hubcore.commands.BuilderModeCommand;
-import net.colonymc.hubcore.commands.PluginCommand;
-import net.colonymc.hubcore.commands.PvPModeCommand;
-import net.colonymc.hubcore.commands.SetupPlayer;
-import net.colonymc.hubcore.commands.SpawnCommand;
-import net.colonymc.hubcore.fun.battlebox.BattleBox;
-import net.colonymc.hubcore.fun.battlebox.BattleBoxCommand;
-import net.colonymc.hubcore.fun.battlebox.Fighter;
-import net.colonymc.hubcore.fun.commands.CookieCommand;
-import net.colonymc.hubcore.fun.commands.KaboomCommand;
-import net.colonymc.hubcore.fun.doublejump.DoubleJumpListener;
-import net.colonymc.hubcore.fun.pvpmode.PvpMode;
-import net.colonymc.hubcore.menus.HelpCommandsMenu;
-import net.colonymc.hubcore.menus.HelpfulMenu;
-import net.colonymc.hubcore.menus.ServerSelector;
-import net.colonymc.hubcore.npcs.LatestDonators;
-import net.colonymc.hubcore.npcs.LatestVoters;
-import net.colonymc.hubcore.pms.MessageCommand;
-import net.colonymc.hubcore.pms.MessageListeners;
-import net.colonymc.hubcore.pms.ReplyCommand;
-import net.colonymc.hubcore.scoreboard.BattleBoxBoard;
-import net.colonymc.hubcore.scoreboard.Scoreboard;
-import net.colonymc.hubcore.util.ChatListener;
-import net.colonymc.hubcore.util.InteractionListeners;
-import net.colonymc.hubcore.util.JoinListener;
-import net.colonymc.hubcore.util.LeaveListener;
-import net.colonymc.hubcore.util.PortalListener;
-import net.colonymc.hubcore.util.items.EnderButtListener;
-import net.colonymc.hubcore.util.items.VisibilityListener;
+import net.colonymc.colonyhubcore.commands.AboutCommand;
+import net.colonymc.colonyhubcore.commands.BuilderModeCommand;
+import net.colonymc.colonyhubcore.commands.PluginCommand;
+import net.colonymc.colonyhubcore.commands.PvPModeCommand;
+import net.colonymc.colonyhubcore.commands.SetupPlayer;
+import net.colonymc.colonyhubcore.commands.SpawnCommand;
+import net.colonymc.colonyhubcore.fun.battlebox.BattleBox;
+import net.colonymc.colonyhubcore.fun.battlebox.BattleBoxCommand;
+import net.colonymc.colonyhubcore.fun.battlebox.Fighter;
+import net.colonymc.colonyhubcore.fun.commands.CookieCommand;
+import net.colonymc.colonyhubcore.fun.commands.KaboomCommand;
+import net.colonymc.colonyhubcore.fun.doublejump.DoubleJumpListener;
+import net.colonymc.colonyhubcore.fun.pvpmode.PvpMode;
+import net.colonymc.colonyhubcore.menus.HelpCommandsMenu;
+import net.colonymc.colonyhubcore.menus.HelpfulMenu;
+import net.colonymc.colonyhubcore.menus.ServerSelector;
+import net.colonymc.colonyhubcore.npcs.LatestDonators;
+import net.colonymc.colonyhubcore.npcs.LatestVoters;
+import net.colonymc.colonyhubcore.pms.MessageCommand;
+import net.colonymc.colonyhubcore.pms.MessageListeners;
+import net.colonymc.colonyhubcore.pms.ReplyCommand;
+import net.colonymc.colonyhubcore.scoreboard.BattleBoxBoard;
+import net.colonymc.colonyhubcore.scoreboard.Scoreboard;
+import net.colonymc.colonyhubcore.util.ChatListener;
+import net.colonymc.colonyhubcore.util.InteractionListeners;
+import net.colonymc.colonyhubcore.util.JoinListener;
+import net.colonymc.colonyhubcore.util.LeaveListener;
+import net.colonymc.colonyhubcore.util.PortalListener;
+import net.colonymc.colonyhubcore.util.items.EnderButtListener;
+import net.colonymc.colonyhubcore.util.items.VisibilityListener;
 import net.minecraft.server.v1_8_R3.NBTTagString;
 
 public class Main extends JavaPlugin {
@@ -71,7 +71,7 @@ public class Main extends JavaPlugin {
 				pluginNames.add(pl.getName());
 			}
 			if(!pluginNames.contains("ColonySpigotAPI") || !pluginNames.contains("PlaceholderAPI") || !pluginNames.contains("Citizens")) {
-				System.out.println(" » The plugin is missing some dependencies! It won't enable!");
+				System.out.println(" Â» The plugin is missing some dependencies! It won't enable!");
 				Bukkit.getPluginManager().disablePlugin(Main.this);
 				return;
 			}
@@ -85,10 +85,10 @@ public class Main extends JavaPlugin {
 			initializeCommands();
 			initializeListeners();
 			started = true;
-			System.out.println(" » ColonyHubCore has been sucessfully enabled!");
+			System.out.println(" Â» ColonyHubCore has been sucessfully enabled!");
 		}
 		else {
-			System.out.println(" » ColonyHubCore couldn't connect to the main database!");
+			System.out.println(" Â» ColonyHubCore couldn't connect to the main database!");
 		}
 	}
 
@@ -99,7 +99,7 @@ public class Main extends JavaPlugin {
 				pluginNames.add(pl.getName());
 			}
 			if(!pluginNames.contains("ColonySpigotAPI") || !pluginNames.contains("PlaceholderAPI") || !pluginNames.contains("Citizens")) {
-				System.out.println(" » ColonyHubCore has been sucessfully disabled!");
+				System.out.println(" Â» ColonyHubCore has been sucessfully disabled!");
 				return;
 			}
 			stopNPCs();
@@ -107,7 +107,7 @@ public class Main extends JavaPlugin {
 			disableBuilderPlayers();
 			hidePublicHolograms();
 		}
-		System.out.println(" » ColonyHubCore has been sucessfully disabled!");
+		System.out.println(" Â» ColonyHubCore has been sucessfully disabled!");
 	}
 	
 	private void setupConditions() {

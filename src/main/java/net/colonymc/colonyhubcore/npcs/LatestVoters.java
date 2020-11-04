@@ -1,4 +1,4 @@
-package net.colonymc.hubcore.npcs;
+package net.colonymc.colonyhubcore.npcs;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,10 +16,9 @@ import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.event.NPCLeftClickEvent;
 import net.citizensnpcs.api.event.NPCRightClickEvent;
 import net.citizensnpcs.api.npc.NPC;
-import net.citizensnpcs.npc.skin.SkinnableEntity;
-import net.colonymc.api.player.PublicHologram;
+import net.colonymc.colonyspigotapi.player.PublicHologram;
 import net.colonymc.colonyapi.MainDatabase;
-import net.colonymc.hubcore.Main;
+import net.colonymc.colonyhubcore.Main;
 
 public class LatestVoters implements Listener {
 	
@@ -154,19 +153,11 @@ public class LatestVoters implements Listener {
 		if(npc != null) {
 			if(index < voters.size() && voters.get(index) != null) {
 				npc.setName(ChatColor.translateAlternateColorCodes('&', "&d" + voters.get(index).getPlayerName()));
-				if(npc.getEntity() instanceof SkinnableEntity) {
-					SkinnableEntity skinnable = (SkinnableEntity) npc.getEntity();
-					npc.data().setPersistent(NPC.PLAYER_SKIN_UUID_METADATA, voters.get(index).getPlayerName());
-					skinnable.setSkinName(voters.get(index).getPlayerName());
-				}
+				npc.data().setPersistent(NPC.PLAYER_SKIN_UUID_METADATA, voters.get(index).getPlayerName());
 			}
 			else {
 				npc.setName(ChatColor.translateAlternateColorCodes('&', "&7None"));
-				if(npc.getEntity() instanceof SkinnableEntity) {
-					SkinnableEntity skinnable = (SkinnableEntity) npc.getEntity();
-					npc.data().setPersistent(NPC.PLAYER_SKIN_UUID_METADATA, "MHF_Question");
-					skinnable.setSkinName("MHF_Question");
-				}
+				npc.data().setPersistent(NPC.PLAYER_SKIN_UUID_METADATA, "MHF_Question");
 			}
 		}
 	}
@@ -206,16 +197,16 @@ public class LatestVoters implements Listener {
 	@EventHandler
 	public void onClick(NPCRightClickEvent e) {
 		if(e.getNPC().equals(npc)) {
-	        e.getClicker().sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &fYou can vote to support the network @ &dhttps://colonymc.net/vote"
-	        		+ "\n &5&l» &f(Voting helps our network and gives you awesome rewards!)"));
+	        e.getClicker().sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&lÂ» &fYou can vote to support the network @ &dhttps://colonymc.net/vote"
+	        		+ "\n &5&lÂ» &f(Voting helps our network and gives you awesome rewards!)"));
 		}
 	}
 	
 	@EventHandler
 	public void onClick(NPCLeftClickEvent e) {
 		if(e.getNPC().equals(npc)) {
-	        e.getClicker().sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &fYou can vote to support the network @ &dhttps://colonymc.net/vote"
-	        		+ "\n &5&l» &f(Voting helps our network and gives you awesome rewards!)"));
+	        e.getClicker().sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&lÂ» &fYou can vote to support the network @ &dhttps://colonymc.net/vote"
+	        		+ "\n &5&lÂ» &f(Voting helps our network and gives you awesome rewards!)"));
 		}
 	}
 

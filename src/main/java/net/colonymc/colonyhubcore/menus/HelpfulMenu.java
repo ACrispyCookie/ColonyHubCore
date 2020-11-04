@@ -1,4 +1,4 @@
-package net.colonymc.hubcore.menus;
+package net.colonymc.colonyhubcore.menus;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -14,9 +14,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import net.colonymc.api.Main;
-import net.colonymc.api.itemstacks.ItemStackBuilder;
-import net.colonymc.api.itemstacks.SkullItemBuilder;
+import net.colonymc.colonyspigotapi.Main;
+import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
+import net.colonymc.colonyspigotapi.itemstacks.SkullItemBuilder;
 
 public class HelpfulMenu implements Listener, InventoryHolder, CommandExecutor {
 
@@ -74,19 +74,19 @@ public class HelpfulMenu implements Listener, InventoryHolder, CommandExecutor {
 			}
 			else if(e.getSlot() == 21) {
 				menu.p.closeInventory();
-				menu.p.sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &fYou can visit our online store @ &dhttps://store.colonymc.net"));
+				menu.p.sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&lÂ» &fYou can visit our online store @ &dhttps://store.colonymc.net"));
 			}
 			else if(e.getSlot() == 39) {
 				menu.p.closeInventory();
-				menu.p.sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &fYou can visit our website @ &dhttps://colonymc.net"));
+				menu.p.sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&lÂ» &fYou can visit our website @ &dhttps://colonymc.net"));
 			}
 			else if(e.getSlot() == 40) {
 				menu.p.closeInventory();
-				menu.p.sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &fYou can visit our twitter profile @ &dhttps://twitter.com/@Colony_MC"));
+				menu.p.sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&lÂ» &fYou can visit our twitter profile @ &dhttps://twitter.com/@Colony_MC"));
 			}
 			else if(e.getSlot() == 41) {
 				menu.p.closeInventory();
-				menu.p.sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &fYou can join our discord server @ &dhttps://colonymc.net/discord"));
+				menu.p.sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&lÂ» &fYou can join our discord server @ &dhttps://colonymc.net/discord"));
 			}
 		}
 	}
