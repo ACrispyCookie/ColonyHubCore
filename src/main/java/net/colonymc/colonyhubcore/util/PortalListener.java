@@ -14,12 +14,14 @@ import net.colonymc.colonyhubcore.Main;
 
 public class PortalListener implements Listener {
 	
-	ArrayList<Player> portalPlayers = new ArrayList<Player>();
+	final ArrayList<Player> portalPlayers = new ArrayList<>();
 	
 	@EventHandler
 	public void onMove(PlayerMoveEvent e) {
-		if((e.getPlayer().getLocation().getZ() <= 32.3 && e.getPlayer().getLocation().getZ() >= 30.7) 
-				&& (e.getPlayer().getLocation().getX() <= 3.7 && e.getPlayer().getLocation().getX() >= -2.7) 
+		if((e.getPlayer().getLocation().getZ() <= Math.max(Main.getInstance().getConfig().getDouble("portal.pos1.z"), Main.getInstance().getConfig().getDouble("portal.pos2.z"))
+				&& e.getPlayer().getLocation().getZ() >= Math.min(Main.getInstance().getConfig().getDouble("portal.pos1.z"), Main.getInstance().getConfig().getDouble("portal.pos2.z")))
+				&& (e.getPlayer().getLocation().getX() <= Math.max(Main.getInstance().getConfig().getDouble("portal.pos1.x"), Main.getInstance().getConfig().getDouble("portal.pos2.x"))
+				&& e.getPlayer().getLocation().getX() >= Math.min(Main.getInstance().getConfig().getDouble("portal.pos1.x"), Main.getInstance().getConfig().getDouble("portal.pos2.x")))
 				&& e.getPlayer().getLocation().getBlock().getType() == Material.PORTAL) {
 			if(!portalPlayers.contains(e.getPlayer())) {
 				portalPlayers.add(e.getPlayer());
@@ -39,18 +41,17 @@ public class PortalListener implements Listener {
 		BukkitRunnable portal = new BukkitRunnable() {
 			@Override
 			public void run() {
-				if((p.getLocation().getZ() >= 32.3 || p.getLocation().getZ() <= 30.7) || (p.getLocation().getX() >= 3.7 || p.getLocation().getX() <= -2.7) && p.getLocation().getBlock().getType() == Material.PORTAL) {
+				if((p.getLocation().getZ() >= Math.max(Main.getInstance().getConfig().getDouble("portal.pos1.z"), Main.getInstance().getConfig().getDouble("portal.pos2.z"))
+						|| p.getLocation().getZ() <= Math.min(Main.getInstance().getConfig().getDouble("portal.pos1.z"), Main.getInstance().getConfig().getDouble("portal.pos2.z")))
+						|| (p.getLocation().getX() >= Math.max(Main.getInstance().getConfig().getDouble("portal.pos1.x"), Main.getInstance().getConfig().getDouble("portal.pos2.x"))
+						|| p.getLocation().getX() <= Math.min(Main.getInstance().getConfig().getDouble("portal.pos1.x"), Main.getInstance().getConfig().getDouble("portal.pos2.x")))
+						&& p.getLocation().getBlock().getType() != Material.PORTAL) {
 					p.chat("/server");
 					portalPlayers.remove(p);
 					cancel();
 				}
 				else {
 					p.setVelocity(p.getLocation().getDirection().multiply(2).setY(0));
-					if((p.getLocation().getZ() >= 32.3 || p.getLocation().getZ() <= 30.7) || (p.getLocation().getX() >= 3.7 || p.getLocation().getX() <= -2.7)) {
-						p.chat("/server");
-						portalPlayers.remove(p);
-						cancel();
-					}
 				}
 			}
 		};

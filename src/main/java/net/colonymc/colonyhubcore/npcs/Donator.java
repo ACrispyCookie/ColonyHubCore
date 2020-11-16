@@ -2,17 +2,17 @@ package net.colonymc.colonyhubcore.npcs;
 
 public class Donator {
 	
-	String playerName;
-	String playerUuid;
-	String packageName;
-	int packagePrice;
-	long timeDonated;
+	final String playerName;
+	final String playerUuid;
+	final String packageName;
+	final int packagePrice;
+	final long timeDonated;
 	
-	public Donator(String playerName, String playerUuid, String packageName, int packagePrice, long timeDonated) {
+	public Donator(String playerName, String playerUuid, String packageName, double packagePrice, long timeDonated) {
 		this.playerName = playerName;
 		this.playerUuid = playerUuid;
 		this.packageName = packageName;
-		this.packagePrice = packagePrice;
+		this.packagePrice = (int) packagePrice;
 		this.timeDonated = timeDonated;
 	}
 	

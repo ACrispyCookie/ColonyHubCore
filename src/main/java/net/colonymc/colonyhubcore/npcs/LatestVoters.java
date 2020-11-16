@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import net.citizensnpcs.npc.skin.Skin;
+import net.citizensnpcs.npc.skin.SkinnableEntity;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -17,13 +19,13 @@ import net.citizensnpcs.api.event.NPCLeftClickEvent;
 import net.citizensnpcs.api.event.NPCRightClickEvent;
 import net.citizensnpcs.api.npc.NPC;
 import net.colonymc.colonyspigotapi.player.PublicHologram;
-import net.colonymc.colonyapi.MainDatabase;
+import net.colonymc.colonyapi.database.MainDatabase;
 import net.colonymc.colonyhubcore.Main;
 
 public class LatestVoters implements Listener {
-	
+
 	NPC npc;
-	ArrayList<Voter> voters = new ArrayList<Voter>();
+	final ArrayList<Voter> voters = new ArrayList<>();
 	PublicHologram holo;
 	BukkitTask update;
 	BukkitTask updateLastLine;
@@ -38,8 +40,8 @@ public class LatestVoters implements Listener {
 			spawnNPC();
 			holo = new PublicHologram(
 					"&5&lLatest Voters\n" + getName(1, true) + "\n" + getName(2, false) + "\n" + getName(3, false) + "\n" + getName(4, false) + "\n" + getName(5, false) + "\n&fUpdates in &d10 &fseconds...\n&f(Click to get a link to the voting sites!)", 
-					new Location(Bukkit.getWorld(Main.getInstance().getNpcConfig().getString("npcs.voter.world")), Main.getInstance().getNpcConfig().getDouble("npcs.voter.x"), Main.getInstance().getNpcConfig().getDouble("npcs.voter.y") + 2.85, 
-							Main.getInstance().getNpcConfig().getDouble("npcs.voter.z")));
+					new Location(Bukkit.getWorld(Main.getInstance().getConfig().getString("npcs.voter.world")), Main.getInstance().getConfig().getDouble("npcs.voter.x"), Main.getInstance().getConfig().getDouble("npcs.voter.y") + 2.85,
+							Main.getInstance().getConfig().getDouble("npcs.voter.z")));
 			holo.show();
 			update = new BukkitRunnable() {
 				@Override
@@ -81,8 +83,7 @@ public class LatestVoters implements Listener {
 	}
 	
 	private void next() {
-		ArrayList<Voter> oldVoters = new ArrayList<Voter>();
-		oldVoters.addAll(voters);
+		ArrayList<Voter> oldVoters = new ArrayList<>(voters);
 		voters.clear();
 		ResultSet rs = MainDatabase.getResultSet("SELECT * FROM PlayerVotes ORDER BY lastVote DESC LIMIT 5;");
 		try {
@@ -136,13 +137,13 @@ public class LatestVoters implements Listener {
 				try {
 					npc = CitizensAPI.getNPCRegistry().getById(66);
 					if(npc != null) {
-						npc.spawn(new Location(Bukkit.getWorld(Main.getInstance().getNpcConfig().getString("npcs.voter.world")), Main.getInstance().getNpcConfig().getDouble("npcs.voter.x"), Main.getInstance().getNpcConfig().getDouble("npcs.voter.y"), 
-								Main.getInstance().getNpcConfig().getDouble("npcs.voter.z"), Main.getInstance().getNpcConfig().getInt("npcs.voter.yaw"), Main.getInstance().getNpcConfig().getInt("npcs.voter.pitch")));
+						npc.spawn(new Location(Bukkit.getWorld(Main.getInstance().getConfig().getString("npcs.voter.world")), Main.getInstance().getConfig().getDouble("npcs.voter.x"), Main.getInstance().getConfig().getDouble("npcs.voter.y"),
+								Main.getInstance().getConfig().getDouble("npcs.voter.z"), Main.getInstance().getConfig().getInt("npcs.voter.yaw"), Main.getInstance().getConfig().getInt("npcs.voter.pitch")));
 						changeNPC(0);
 						changeNPC(0);
 						cancel();
 					}
-				} catch(IllegalStateException e) {
+				} catch(IllegalStateException ignored) {
 					
 				}
 			}
@@ -154,10 +155,17 @@ public class LatestVoters implements Listener {
 			if(index < voters.size() && voters.get(index) != null) {
 				npc.setName(ChatColor.translateAlternateColorCodes('&', "&d" + voters.get(index).getPlayerName()));
 				npc.data().setPersistent(NPC.PLAYER_SKIN_UUID_METADATA, voters.get(index).getPlayerName());
+				npc.data().setPersistent("cached-skin-uuid-name", voters.get(index).getPlayerName());
+				npc.data().setPersistent("cached-skin-uuid", voters.get(index).getPlayerUuid());
 			}
 			else {
 				npc.setName(ChatColor.translateAlternateColorCodes('&', "&7None"));
 				npc.data().setPersistent(NPC.PLAYER_SKIN_UUID_METADATA, "MHF_Question");
+				npc.data().setPersistent("cached-skin-uuid-name", "MHF_Question");
+				npc.data().setPersistent("cached-skin-uuid", "606e2ff0-ed77-4842-9d6c-e1d3321c7838");
+			}
+			if(npc.isSpawned() && npc.getEntity() instanceof SkinnableEntity){
+				Skin.get((SkinnableEntity) npc.getEntity()).applyAndRespawn((SkinnableEntity) npc.getEntity());
 			}
 		}
 	}

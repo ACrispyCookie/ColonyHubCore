@@ -8,7 +8,7 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 
 public class Placeholders extends PlaceholderExpansion {
 	
-	Plugin plugin;
+	final Plugin plugin;
 	
 	public Placeholders(Plugin main) {
 		this.plugin = main;

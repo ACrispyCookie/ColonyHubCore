@@ -19,14 +19,12 @@ import net.colonymc.colonyhubcore.commands.SetupPlayer;
 
 public class Team {
 
-	ArrayList<Fighter> players = new ArrayList<Fighter>();
-	Location loc;
-	Color c;
+	final ArrayList<Fighter> players = new ArrayList<>();
+	final Location loc;
+	final Color c;
 	
 	public Team(ArrayList<Fighter> players, Location loc, Color c) {
-		for(Fighter p : players) {
-			this.players.add(p);
-		}
+		this.players.addAll(players);
 		this.loc = loc;
 		this.c = c;
 	}

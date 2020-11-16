@@ -28,9 +28,9 @@ import net.minecraft.server.v1_8_R3.NBTTagString;
 
 public class PvpMode implements Listener {
 	
-	static ArrayList<Player> pvpPlayers = new ArrayList<Player>();
-	static HashMap<Player, ItemStack[]> inventories = new HashMap<Player, ItemStack[]>();
-	static HashMap<Player, ItemStack[]> armors = new HashMap<Player, ItemStack[]>();
+	static final ArrayList<Player> pvpPlayers = new ArrayList<>();
+	static final HashMap<Player, ItemStack[]> inventories = new HashMap<>();
+	static final HashMap<Player, ItemStack[]> armors = new HashMap<>();
 	
 	public void togglePvpMode(Player p) {
 		if(isPvping(p)) {
@@ -98,10 +98,7 @@ public class PvpMode implements Listener {
 	}
 	
 	public static boolean isPvping(Player p) {
-		if(pvpPlayers.contains(p)) {
-			return true;
-		}
-		return false;
+		return pvpPlayers.contains(p);
 	}
 	
 	@EventHandler
@@ -170,7 +167,7 @@ public class PvpMode implements Listener {
 					CombatTag.getCombat(damaged).end();
 				}
 				else {
-					ArrayList<Player> players = new ArrayList<Player>();
+					ArrayList<Player> players = new ArrayList<>();
 					players.add(damaged);
 					players.add(damager);
 					if(CombatTag.getCombat(damaged) != null) {
@@ -195,7 +192,7 @@ public class PvpMode implements Listener {
 			Player damager = (Player) ((Projectile) e.getDamager()).getShooter();
 			Player damaged = (Player) e.getEntity();
 			if(PvpMode.isPvping(damaged) && PvpMode.isPvping(damager)) {
-				ArrayList<Player> players = new ArrayList<Player>();
+				ArrayList<Player> players = new ArrayList<>();
 				players.add(damaged);
 				players.add(damager);
 				if(CombatTag.getCombat(damaged) != null) {

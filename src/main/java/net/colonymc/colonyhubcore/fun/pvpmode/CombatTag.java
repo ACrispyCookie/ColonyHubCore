@@ -11,9 +11,9 @@ import net.colonymc.colonyspigotapi.Main;
 
 public class CombatTag {
 	
-	ArrayList<Player> players;
-	BukkitTask expire;
-	static ArrayList<CombatTag> activeTags = new ArrayList<CombatTag>();
+	final ArrayList<Player> players;
+	final BukkitTask expire;
+	static final ArrayList<CombatTag> activeTags = new ArrayList<>();
 	
 	public CombatTag(ArrayList<Player> players) {
 		this.players = players;

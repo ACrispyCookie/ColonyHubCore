@@ -6,11 +6,11 @@ import org.bukkit.entity.Player;
 
 public class Fighter {
 
-	Player p;
-	Team team;
+	final Player p;
+	final Team team;
 	boolean dead;
 	int kills = 0;
-	static ArrayList<Fighter> fighters = new ArrayList<Fighter>();
+	static final ArrayList<Fighter> fighters = new ArrayList<>();
 	
 	public Fighter(Player p, Team team, boolean dead) {
 		this.p = p;

@@ -27,18 +27,18 @@ public class PluginCommand implements CommandExecutor, Listener {
 			}
 			else {
 				new Message("&5&lAll Plugins (" + Bukkit.getPluginManager().getPlugins().length + ")").addRecipient(p).centered(true).send();
-				String message = "";
+				StringBuilder message = new StringBuilder();
 				int i = 0;
 				for(Plugin pl : Bukkit.getPluginManager().getPlugins()) {
 					i++;
 					if(i != Bukkit.getPluginManager().getPlugins().length) {
-						message = message + ChatColor.LIGHT_PURPLE + pl.getName() + ", ";
+						message.append(ChatColor.LIGHT_PURPLE).append(pl.getName()).append(", ");
 					}
 					else {
-						message = message + ChatColor.LIGHT_PURPLE + pl.getName();
+						message.append(ChatColor.LIGHT_PURPLE).append(pl.getName());
 					}
 				}
-				sender.sendMessage(message);
+				sender.sendMessage(message.toString());
 			}
 		}
 		return false;
@@ -46,8 +46,8 @@ public class PluginCommand implements CommandExecutor, Listener {
 	
 	@EventHandler
 	public void onCommand(PlayerCommandPreprocessEvent e) {
-		if(!e.getPlayer().hasPermission("*")) {
-			if((e.getMessage().contains(" ") && e.getMessage().substring(0, e.getMessage().indexOf(' ')).contains(":")) || (!e.getMessage().contains(" ") && e.getMessage().contains(":"))) {
+		if((e.getMessage().contains(" ") && e.getMessage().substring(0, e.getMessage().indexOf(' ')).contains(":")) || (!e.getMessage().contains(" ") && e.getMessage().contains(":"))) {
+			if(!e.getPlayer().hasPermission("*")) {
 				e.setCancelled(true);
 				e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &cPlease do not use this syntax on your commands!"));
 			}

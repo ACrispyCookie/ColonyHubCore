@@ -1,5 +1,6 @@
 package net.colonymc.colonyhubcore.commands;
 
+import net.colonymc.colonyhubcore.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -17,7 +18,7 @@ public class SpawnCommand implements CommandExecutor {
 		if(sender instanceof Player) {
 			Player p = (Player) sender;
 			p.sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &fTeleporting you to &dspawn!"));
-			p.teleport(new Location(Bukkit.getWorld("world"), 0.5, 110.5, 0.5));
+			p.teleport(Main.getInstance().getSpawn());
 		}
 		else {
 			sender.sendMessage(MainMessages.onlyPlayers);

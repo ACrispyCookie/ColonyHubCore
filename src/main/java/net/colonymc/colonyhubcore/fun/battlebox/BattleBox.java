@@ -40,10 +40,10 @@ import net.colonymc.colonyhubcore.scoreboard.BattleBoxBoard;
 
 public class BattleBox implements Listener {
 	
-	ArrayList<Team> teams = new ArrayList<Team>();
-	ArrayList<Block> blocks = new ArrayList<Block>();
-	HashMap<Team, Integer> points = new HashMap<Team, Integer>();
-	ArrayList<Projectile> thrown = new ArrayList<Projectile>();
+	final ArrayList<Team> teams = new ArrayList<>();
+	final ArrayList<Block> blocks = new ArrayList<>();
+	final HashMap<Team, Integer> points = new HashMap<>();
+	final ArrayList<Projectile> thrown = new ArrayList<>();
 	int round = 0;
 	int startingIn = 15;
 	int ticksLeft = 12000;
@@ -58,8 +58,8 @@ public class BattleBox implements Listener {
 	Team winner;
 	
 	public BattleBox() {
-		teams.add(new Team(new ArrayList<Fighter>(), new Location(Bukkit.getWorld("battlebox"), -11, 5, 4, 180, 0), Color.RED));
-		teams.add(new Team(new ArrayList<Fighter>(), new Location(Bukkit.getWorld("battlebox"), -8, 5, -16, 0, 0), Color.BLUE));
+		teams.add(new Team(new ArrayList<>(), new Location(Bukkit.getWorld("battlebox"), -11, 5, 4, 180, 0), Color.RED));
+		teams.add(new Team(new ArrayList<>(), new Location(Bukkit.getWorld("battlebox"), -8, 5, -16, 0, 0), Color.BLUE));
 		points.put(teams.get(0), 0);
 		points.put(teams.get(1), 0);
 	}
@@ -638,12 +638,7 @@ public class BattleBox implements Listener {
 	public void onInventoryChange(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();
 		if(Fighter.getByPlayer(p) != null && !Fighter.getByPlayer(p).isDead()) {
-			if(e.getSlot() != 36 && e.getSlot() != 37 && e.getSlot() != 38 && e.getSlot() != 39) {
-				e.setCancelled(false);
-			}
-			else {
-				e.setCancelled(true);
-			}
+			e.setCancelled(e.getSlot() == 36 || e.getSlot() == 37 || e.getSlot() == 38 || e.getSlot() == 39);
 		}
 		else if(Fighter.getByPlayer(p) != null && Fighter.getByPlayer(p).isDead()) {
 			e.setCancelled(true);

@@ -18,7 +18,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
 import net.colonymc.colonyspigotapi.player.PublicHologram;
-import net.colonymc.colonyapi.MainDatabase;
+import net.colonymc.colonyapi.database.MainDatabase;
 import net.colonymc.colonyhubcore.commands.AboutCommand;
 import net.colonymc.colonyhubcore.commands.BuilderModeCommand;
 import net.colonymc.colonyhubcore.commands.PluginCommand;
@@ -54,19 +54,20 @@ import net.minecraft.server.v1_8_R3.NBTTagString;
 public class Main extends JavaPlugin {
 	
 	static Main instance;
-	private static PvpMode pvpInstance = new PvpMode();
-	private BattleBox box = new BattleBox();
+	private Location spawn;
+	private static final PvpMode pvpInstance = new PvpMode();
+	private final BattleBox box = new BattleBox();
 	private LatestDonators donatorsInstance;
 	private LatestVoters votersInstance;
-	private File npc = new File(this.getDataFolder(), "npcs.yml");
-	private FileConfiguration npcConfig = new YamlConfiguration();
-	private ArrayList<PublicHologram> publicHolos = new ArrayList<PublicHologram>();
+	private final File configFile = new File(this.getDataFolder(), "config.yml");
+	private final FileConfiguration config = new YamlConfiguration();
+	private final ArrayList<PublicHologram> publicHolos = new ArrayList<>();
 	boolean started = false;
 	
 	public void onEnable() {
 		instance = this;
 		if(MainDatabase.isConnected()) {
-			ArrayList<String> pluginNames = new ArrayList<String>();
+			ArrayList<String> pluginNames = new ArrayList<>();
 			for(Plugin pl : Bukkit.getPluginManager().getPlugins()) {
 				pluginNames.add(pl.getName());
 			}
@@ -80,6 +81,7 @@ public class Main extends JavaPlugin {
 	        }
 			setupConditions();
 			setupConfigs();
+			setupSpawn();
 			startNPCs();
 			updateScoreboards();
 			initializeCommands();
@@ -94,7 +96,7 @@ public class Main extends JavaPlugin {
 
 	public void onDisable() {
 		if(started) {
-			ArrayList<String> pluginNames = new ArrayList<String>();
+			ArrayList<String> pluginNames = new ArrayList<>();
 			for(Plugin pl : Bukkit.getPluginManager().getPlugins()) {
 				pluginNames.add(pl.getName());
 			}
@@ -117,7 +119,7 @@ public class Main extends JavaPlugin {
 			p.setHealth(20);
 			p.setAllowFlight(true);
 			p.setScoreboard(new Scoreboard().scoreboardNormalCreate(p));
-			p.teleport(new Location(Bukkit.getWorld("world"), 0.5, 110.5, 0.5));
+			p.teleport(Main.getInstance().getSpawn());
 			p.getOpenInventory().getBottomInventory().clear();
 			p.getOpenInventory().getTopInventory().clear();
 			p.getInventory().clear();
@@ -133,14 +135,21 @@ public class Main extends JavaPlugin {
 	
 	private void setupConfigs() {
 			try {
-				if(!npc.exists()) {
-					npc.getParentFile().mkdirs();
-					saveResource("npcs.yml", false);
+				if(!configFile.exists()) {
+					configFile.getParentFile().mkdirs();
+					saveResource("config.yml", false);
 				}
-				npcConfig.load(npc);
+				config.load(configFile);
 			} catch (IOException | InvalidConfigurationException e) {
 				e.printStackTrace();
 			}
+	}
+
+	private void setupSpawn(){
+		double x = config.getDouble("spawn.x");
+		double y = config.getDouble("spawn.y");
+		double z = config.getDouble("spawn.z");
+		spawn = new Location(Bukkit.getWorld("world"), x, y, z);
 	}
 	
 	private void startNPCs() {
@@ -248,8 +257,12 @@ public class Main extends JavaPlugin {
 		return box;
 	}
 	
-	public FileConfiguration getNpcConfig() {
-		return npcConfig;
+	public FileConfiguration getConfig() {
+		return config;
+	}
+
+	public Location getSpawn(){
+		return spawn.clone();
 	}
 
 }

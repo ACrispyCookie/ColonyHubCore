@@ -15,8 +15,8 @@ import net.colonymc.colonyhubcore.MainMessages;
 
 public class MessageCommand implements CommandExecutor {
 
-	String usage = ChatColor.translateAlternateColorCodes('&', " &5&l» &fUsage: &d/msg <player> <message>");
-	String playerNotOnline = ChatColor.translateAlternateColorCodes('&', " &5&l» &cThis player is currently not online!");
+	final String usage = ChatColor.translateAlternateColorCodes('&', " &5&l» &fUsage: &d/msg <player> <message>");
+	final String playerNotOnline = ChatColor.translateAlternateColorCodes('&', " &5&l» &cThis player is currently not online!");
 	String playerHasToggledMsg = ChatColor.translateAlternateColorCodes('&', " &5&l» &cThis player has turned their messages off!");
 	
 	@Override
@@ -30,26 +30,26 @@ public class MessageCommand implements CommandExecutor {
 						if(Conversation.conversations.containsKey(psender) && 
 								(Conversation.conversations.get(psender).recipient == recipient || 
 								Conversation.conversations.get(psender).recipient == psender)) {
-							List<String> text = new ArrayList<String>(Arrays.asList(args.clone()));
+							List<String> text = new ArrayList<>(Arrays.asList(args.clone()));
 							text.remove(0);
-							String message = "";
+							StringBuilder message = new StringBuilder();
 							for(String s : text) {
-								message = message + s + " ";
+								message.append(s).append(" ");
 							}
 							Conversation conv = Conversation.conversations.get(psender);
 							conv.resetTimer();
-							conv.sendMessage(psender, message);
+							conv.sendMessage(psender, message.toString());
 						}
 						else {
-							List<String> text = new ArrayList<String>(Arrays.asList(args.clone()));
+							List<String> text = new ArrayList<>(Arrays.asList(args.clone()));
 							text.remove(0);
-							String message = "";
+							StringBuilder message = new StringBuilder();
 							for(String s : text) {
-								message = message + s + " ";
+								message.append(s).append(" ");
 							}
 							Conversation conv = new Conversation(psender, recipient);
 							conv.open();
-							conv.sendMessage(psender, message);
+							conv.sendMessage(psender, message.toString());
 						}
 					}
 					else {

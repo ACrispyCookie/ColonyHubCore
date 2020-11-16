@@ -15,7 +15,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import net.colonymc.colonyhubcore.Main;
 
 public class Scoreboard implements Listener {
-	
+
 	public static void linesUpdate(Player p) {
 		org.bukkit.scoreboard.Scoreboard sb = p.getScoreboard();
 		if(sb.getObjective("ColonyMC [Lobby]").getDisplayName() != null) {
@@ -29,8 +29,8 @@ public class Scoreboard implements Listener {
 				sb.getTeam("scrollinfo").setSuffix(ChatColor.translateAlternateColorCodes('&', "&dcolonymc.net"));
 			}
 		}
-	}	
-	
+	}
+
 	public org.bukkit.scoreboard.Scoreboard scoreboardNormalCreate(Player p) {
 		ScoreboardManager m = Bukkit.getScoreboardManager();
 		org.bukkit.scoreboard.Scoreboard b = m.getNewScoreboard();
@@ -84,7 +84,7 @@ public class Scoreboard implements Listener {
 		o.getScore(ChatColor.translateAlternateColorCodes('&', "&r&f&m-+--------------+-")).setScore(3);
 		return b;
 	}
-	
+
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();

@@ -27,7 +27,7 @@ import net.colonymc.colonyhubcore.fun.battlebox.Fighter;
 
 public class DoubleJumpListener implements Listener {
 	
-	ArrayList<Player> onTheAirPlayers = new ArrayList<Player>();
+	final ArrayList<Player> onTheAirPlayers = new ArrayList<>();
 
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {

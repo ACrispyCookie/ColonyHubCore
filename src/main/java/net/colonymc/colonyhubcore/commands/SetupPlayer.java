@@ -1,5 +1,6 @@
 package net.colonymc.colonyhubcore.commands;
 
+import net.colonymc.colonyhubcore.Main;
 import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -66,7 +67,7 @@ public class SetupPlayer implements CommandExecutor {
 		p.setHealth(20);
 		p.setAllowFlight(true);
 		p.setScoreboard(new Scoreboard().scoreboardNormalCreate(p));
-		p.teleport(new Location(Bukkit.getWorld("world"), 0.5, 110.5, 0.5));
+		p.teleport(Main.getInstance().getSpawn());
 		p.getOpenInventory().getBottomInventory().clear();
 		p.getOpenInventory().getTopInventory().clear();
 		p.getInventory().clear();

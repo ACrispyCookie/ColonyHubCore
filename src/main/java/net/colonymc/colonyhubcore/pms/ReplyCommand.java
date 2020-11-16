@@ -14,7 +14,7 @@ import net.colonymc.colonyhubcore.MainMessages;
 
 public class ReplyCommand implements CommandExecutor {
 	
-	String usage = ChatColor.translateAlternateColorCodes('&', " &5&l» &fUsage: &d/reply <message>");
+	final String usage = ChatColor.translateAlternateColorCodes('&', " &5&l» &fUsage: &d/reply <message>");
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String arg2, String[] args) {
@@ -22,14 +22,14 @@ public class ReplyCommand implements CommandExecutor {
 			Player p = (Player) sender;
 			if(args.length > 0) {
 				if(Conversation.conversations.containsKey(p)) {
-					List<String> text = new ArrayList<String>(Arrays.asList(args.clone()));
-					String message = "";
+					List<String> text = new ArrayList<>(Arrays.asList(args.clone()));
+					StringBuilder message = new StringBuilder();
 					for(String s : text) {
-						message = message + s + " ";
+						message.append(s).append(" ");
 					}
 					Conversation conv = Conversation.conversations.get(p);
 					conv.resetTimer();
-					conv.sendMessage(p, message);
+					conv.sendMessage(p, message.toString());
 				}
 				else {
 					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &cYou didn't open any conversations in the last 5 minutes!"));

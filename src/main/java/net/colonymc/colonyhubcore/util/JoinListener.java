@@ -26,7 +26,7 @@ import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
 import net.colonymc.colonyspigotapi.messages.Message;
 import net.colonymc.colonyspigotapi.player.Title;
 import net.colonymc.colonyspigotapi.player.TitleAction;
-import net.colonymc.colonyapi.MainDatabase;
+import net.colonymc.colonyapi.database.MainDatabase;
 import net.colonymc.colonyhubcore.Main;
 import net.colonymc.colonyhubcore.util.items.VisibilityListener;
 import net.minecraft.server.v1_8_R3.NBTTagString;
@@ -49,7 +49,7 @@ public class JoinListener implements Listener {
 		if(p.hasPermission("king.store") && !p.hasPermission("staff.store")) {
 			e.setJoinMessage("\n" + ChatColor.translateAlternateColorCodes('&', " &5&l» &d" + p.getDisplayName() + " &fhas joined the lobby!\n "));
 		}
-		p.teleport(new Location(Bukkit.getWorld("world"), 0.5, 110, 0.5, 0, 0));
+		p.teleport(Main.getInstance().getSpawn());
 		if(p.hasPermission("*")) {
 			sendFirework(p);
 		}

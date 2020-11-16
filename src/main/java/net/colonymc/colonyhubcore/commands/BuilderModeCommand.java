@@ -20,15 +20,15 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 
-import net.colonymc.colonyapi.MainDatabase;
+import net.colonymc.colonyapi.database.MainDatabase;
 import net.colonymc.colonyhubcore.MainMessages;
 import net.colonymc.colonyhubcore.util.items.VisibilityListener;
 
 public class BuilderModeCommand implements CommandExecutor, Listener {
 
-	public static ArrayList<Player> builderMode = new ArrayList<Player>();
-	public static HashMap<Player, ItemStack[]> items = new HashMap<Player, ItemStack[]>();
-	public static HashMap<Player, ItemStack[]> armor = new HashMap<Player, ItemStack[]>();
+	public static final ArrayList<Player> builderMode = new ArrayList<>();
+	public static final HashMap<Player, ItemStack[]> items = new HashMap<>();
+	public static final HashMap<Player, ItemStack[]> armor = new HashMap<>();
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {

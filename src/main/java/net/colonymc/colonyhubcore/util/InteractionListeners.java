@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -37,6 +38,14 @@ public class InteractionListeners implements Listener {
 			if(e.getClickedBlock() != null && (e.getClickedBlock().getType() == Material.BEACON || e.getClickedBlock().getType() == Material.ANVIL)) {
 				e.setCancelled(true);
 			}
+		}
+	}
+
+	@EventHandler
+	public void onCropBreak(PlayerInteractEvent e) {
+		Player p = e.getPlayer();
+		if(e.getAction() == Action.PHYSICAL && e.getClickedBlock().getType() == Material.SOIL) {
+			e.setCancelled(true);
 		}
 	}
 	

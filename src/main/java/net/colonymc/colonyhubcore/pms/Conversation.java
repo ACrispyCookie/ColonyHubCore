@@ -11,9 +11,9 @@ import net.colonymc.colonyhubcore.Main;
 
 public class Conversation {
 	
-	static HashMap<Player, Conversation> conversations = new HashMap<Player, Conversation>();
-	Player sender;
-	Player recipient;
+	static final HashMap<Player, Conversation> conversations = new HashMap<>();
+	final Player sender;
+	final Player recipient;
 	boolean open;
 	int counter = 0;
 	
@@ -52,7 +52,7 @@ public class Conversation {
 		recipient.playSound(recipient.getLocation(), Sound.CHICKEN_EGG_POP, 2, 1);
 	}
 	
-	BukkitRunnable autoClose = new BukkitRunnable() {
+	final BukkitRunnable autoClose = new BukkitRunnable() {
 		@Override
 		public void run() {
 			if(counter == 6000) {

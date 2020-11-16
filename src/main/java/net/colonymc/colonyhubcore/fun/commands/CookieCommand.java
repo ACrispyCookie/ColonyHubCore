@@ -34,7 +34,7 @@ public class CookieCommand implements CommandExecutor, Listener{
     	    			Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &d" + target.getPlayerListName() + " &fgot &d1x &fspecial cookie!"));
     	    			cookiemeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&d&lSpecial Cookie"));
     	    			cookiemeta.addEnchant(Enchantment.DURABILITY, -1, false);
-    	    			ArrayList<String> lore = new ArrayList<String>();
+    	    			ArrayList<String> lore = new ArrayList<>();
     	    			lore.add("");
     	    			lore.add(ChatColor.translateAlternateColorCodes('&', "&fThis &d&lSpecial Cookie &fwas given"));
     	    			lore.add(ChatColor.translateAlternateColorCodes('&', "&fto &d" + target.getPlayerListName() + "&f from &d" + p.getPlayerListName() + "&f!"));
@@ -51,7 +51,7 @@ public class CookieCommand implements CommandExecutor, Listener{
     	    			Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &d" + target.getPlayerListName() + " &fgot &d" + amount + "x &fspecial cookies!"));
     	    			cookiemeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&d&lSpecial Cookie"));
     	    			cookiemeta.addEnchant(Enchantment.DURABILITY, -1, false);
-    	    			ArrayList<String> lore = new ArrayList<String>();
+    	    			ArrayList<String> lore = new ArrayList<>();
     	    			lore.add("");
     	    			lore.add(ChatColor.translateAlternateColorCodes('&', "&fThis &d&lSpecial Cookie &fwas given"));
     	    			lore.add(ChatColor.translateAlternateColorCodes('&', "&fto &d" + target.getPlayerListName() + "&f from &d" + p.getPlayerListName() + "&f!"));
@@ -72,7 +72,7 @@ public class CookieCommand implements CommandExecutor, Listener{
     			Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &d" + target.getPlayerListName() + " &fgot &d1x &fspecial cookie!"));
     			cookiemeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&d&lSpecial Cookie"));
     			cookiemeta.addEnchant(Enchantment.DURABILITY, -1, false);
-    			ArrayList<String> lore = new ArrayList<String>();
+    			ArrayList<String> lore = new ArrayList<>();
     			lore.add("");
     			lore.add(ChatColor.translateAlternateColorCodes('&', "&fThis &d&lSpecial Cookie &fwas given"));
     			lore.add(ChatColor.translateAlternateColorCodes('&', "&fto &d" + target.getPlayerListName() + "&f from &d" + sender.getName() + "&f!"));
@@ -89,7 +89,7 @@ public class CookieCommand implements CommandExecutor, Listener{
     			Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &d" + target.getPlayerListName() + " &fgot &d" + amount + "x &fspecial cookies!"));
     			cookiemeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&d&lSpecial Cookie"));
     			cookiemeta.addEnchant(Enchantment.DURABILITY, -1, false);
-    			ArrayList<String> lore = new ArrayList<String>();
+    			ArrayList<String> lore = new ArrayList<>();
     			lore.add("");
     			lore.add(ChatColor.translateAlternateColorCodes('&', "&fThis &d&lSpecial Cookie &fwas given"));
     			lore.add(ChatColor.translateAlternateColorCodes('&', "&fto &d" + target.getPlayerListName() + "&f from &d" + sender.getName() + "&f!"));

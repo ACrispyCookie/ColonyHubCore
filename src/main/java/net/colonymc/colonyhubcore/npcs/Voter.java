@@ -2,9 +2,9 @@ package net.colonymc.colonyhubcore.npcs;
 
 public class Voter {
 	
-	String playerName;
-	String playerUuid;
-	long timeVoted;
+	final String playerName;
+	final String playerUuid;
+	final long timeVoted;
 	
 	public Voter(String playerName, String playerUuid, long timeVoted) {
 		this.playerName = playerName;

@@ -1,0 +1,26 @@
+spawn:
+  x: 0.5
+  y: 100
+  z: 0.5
+portal:
+  pos1:
+    x: 10
+    z: 10
+  pos2:
+    x: 10
+    z: 10
+npcs:
+  donator:
+    world: "world"
+    x: 16.5
+    y: 110
+    z: 16.5
+    yaw: 0
+    pitch: 0
+  voter:
+    world: "world"
+    x: -16.5
+    y: 110
+    z: 16.5
+    yaw: 0
+    pitch: 0

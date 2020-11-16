@@ -25,7 +25,7 @@ public class ChatListener implements Listener {
 		if(Fighter.getByPlayer(p) != null) {
 			Fighter f = Fighter.getByPlayer(p);
 			if(!e.isCancelled()) {
-				ArrayList<Player> players = new ArrayList<Player>();
+				ArrayList<Player> players = new ArrayList<>();
 				for(Team t : Main.getInstance().getBox().getTeams()) {
 					for(Fighter fi : t.getFighters()) {
 						players.add(fi.getPlayer());
@@ -44,7 +44,7 @@ public class ChatListener implements Listener {
 		}
 		else {
 			if(!e.isCancelled()) {
-				ArrayList<Player> players = new ArrayList<Player>();
+				ArrayList<Player> players = new ArrayList<>();
 				for(Player pl : e.getRecipients()) {
 					if(Fighter.getByPlayer(pl) == null) {
 						players.add(pl);
@@ -66,7 +66,7 @@ public class ChatListener implements Listener {
 				}
 				name.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/msg " + p.getName() + " "));
 				name.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent[] {new TextComponent(ChatColor.translateAlternateColorCodes('&', "&fClick here to message &d" + p.getName()))}));
-				ArrayList<TextComponent> msg = new ArrayList<TextComponent>();
+				ArrayList<TextComponent> msg = new ArrayList<>();
 				String[] words = e.getMessage().split(" ");
 				for(String s : words) {
 					if((s.contains("https://") || s.contains("http://")) && s.contains(".")) {
@@ -98,7 +98,7 @@ public class ChatListener implements Listener {
 		ADMIN('c'),
 		COLONY('5');
 		
-		char color;
+		final char color;
 		
 		COLOR(char c){
 			color = c;

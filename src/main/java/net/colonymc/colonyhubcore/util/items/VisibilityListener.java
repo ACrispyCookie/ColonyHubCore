@@ -17,12 +17,12 @@ import org.bukkit.inventory.ItemStack;
 
 import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
 import net.colonymc.colonyspigotapi.itemstacks.NBTItems;
-import net.colonymc.colonyapi.MainDatabase;
+import net.colonymc.colonyapi.database.MainDatabase;
 import net.minecraft.server.v1_8_R3.NBTTagString;
 
 public class VisibilityListener implements Listener {
 	
-	public static ArrayList<Player> disabledVis = new ArrayList<Player>();
+	public static final ArrayList<Player> disabledVis = new ArrayList<>();
 	
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {

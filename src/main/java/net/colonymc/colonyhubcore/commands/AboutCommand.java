@@ -31,13 +31,13 @@ public class AboutCommand implements CommandExecutor, TabCompleter {
 				}
 			}
 			else {
-				String pl = "";
+				StringBuilder pl = new StringBuilder();
 				for(int i = 0; i < plugins.length; i++) {
 					if(i + 1 == plugins.length) {
-						pl = pl + plugins[i];
+						pl.append(plugins[i]);
 					}
 					else {
-						pl = pl + plugins[i] + ", ";
+						pl.append(plugins[i]).append(", ");
 					}
 					
 				}
@@ -52,10 +52,8 @@ public class AboutCommand implements CommandExecutor, TabCompleter {
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
-		List<String> list = new ArrayList<String>();
-		for(String s : plugins) {
-			list.add(s);
-		}
+		List<String> list = new ArrayList<>();
+		list.addAll(Arrays.asList(plugins));
 		return list;
 	}
 
