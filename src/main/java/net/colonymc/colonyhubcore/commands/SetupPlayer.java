@@ -1,8 +1,8 @@
 package net.colonymc.colonyhubcore.commands;
 
 import net.colonymc.colonyhubcore.Main;
-import net.colonymc.colonyhubcore.scoreboard.ScoreboardManager;
 import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
+import net.colonymc.colonyspigotapi.player.ScoreboardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -65,7 +65,7 @@ public class SetupPlayer implements CommandExecutor {
 		p.setFoodLevel(20);
 		p.setHealth(20);
 		p.setAllowFlight(true);
-		ScoreboardManager.getByPlayer(p).setType(ScoreboardManager.SCOREBOARD_TYPE.MAIN);
+		ScoreboardManager.getByPlayer(p).setType("main");
 		p.teleport(Main.getInstance().getSpawn());
 		p.getOpenInventory().getBottomInventory().clear();
 		p.getOpenInventory().getTopInventory().clear();

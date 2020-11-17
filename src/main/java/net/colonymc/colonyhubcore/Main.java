@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import net.colonymc.colonyhubcore.scoreboard.ScoreboardManager;
+import net.colonymc.colonyspigotapi.player.ScoreboardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -114,7 +114,7 @@ public class Main extends JavaPlugin {
 			p.setFoodLevel(20);
 			p.setHealth(20);
 			p.setAllowFlight(true);
-			new ScoreboardManager(p);
+			new ScoreboardManager(p, "main");
 			p.teleport(Main.getInstance().getSpawn());
 			p.getOpenInventory().getBottomInventory().clear();
 			p.getOpenInventory().getTopInventory().clear();

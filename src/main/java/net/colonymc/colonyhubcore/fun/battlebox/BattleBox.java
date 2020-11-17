@@ -3,7 +3,7 @@ package net.colonymc.colonyhubcore.fun.battlebox;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import net.colonymc.colonyhubcore.scoreboard.ScoreboardManager;
+import net.colonymc.colonyspigotapi.player.ScoreboardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -75,7 +75,7 @@ public class BattleBox implements Listener {
 			p.getInventory().clear();
 			p.getOpenInventory().getTopInventory().clear();
 			p.setItemOnCursor(new ItemStack(Material.AIR));
-			ScoreboardManager.getByPlayer(p).setType(ScoreboardManager.SCOREBOARD_TYPE.BATTLEBOX);
+			ScoreboardManager.getByPlayer(p).setType("battlebox");
 			setInventory(p);
 			t.teleport(p);
 			for(Team te : teams) {
