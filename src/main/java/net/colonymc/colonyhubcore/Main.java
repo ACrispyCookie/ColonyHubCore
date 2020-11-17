@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import net.colonymc.colonyhubcore.scoreboard.ScoreboardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,7 +15,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
 import net.colonymc.colonyspigotapi.player.PublicHologram;
@@ -27,7 +27,6 @@ import net.colonymc.colonyhubcore.commands.SetupPlayer;
 import net.colonymc.colonyhubcore.commands.SpawnCommand;
 import net.colonymc.colonyhubcore.fun.battlebox.BattleBox;
 import net.colonymc.colonyhubcore.fun.battlebox.BattleBoxCommand;
-import net.colonymc.colonyhubcore.fun.battlebox.Fighter;
 import net.colonymc.colonyhubcore.fun.commands.CookieCommand;
 import net.colonymc.colonyhubcore.fun.commands.KaboomCommand;
 import net.colonymc.colonyhubcore.fun.doublejump.DoubleJumpListener;
@@ -40,8 +39,6 @@ import net.colonymc.colonyhubcore.npcs.LatestVoters;
 import net.colonymc.colonyhubcore.pms.MessageCommand;
 import net.colonymc.colonyhubcore.pms.MessageListeners;
 import net.colonymc.colonyhubcore.pms.ReplyCommand;
-import net.colonymc.colonyhubcore.scoreboard.BattleBoxBoard;
-import net.colonymc.colonyhubcore.scoreboard.Scoreboard;
 import net.colonymc.colonyhubcore.util.ChatListener;
 import net.colonymc.colonyhubcore.util.InteractionListeners;
 import net.colonymc.colonyhubcore.util.JoinListener;
@@ -79,11 +76,10 @@ public class Main extends JavaPlugin {
 			if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
 				new Placeholders(this).register();
 	        }
-			setupConditions();
 			setupConfigs();
 			setupSpawn();
+			setupConditions();
 			startNPCs();
-			updateScoreboards();
 			initializeCommands();
 			initializeListeners();
 			started = true;
@@ -118,7 +114,7 @@ public class Main extends JavaPlugin {
 			p.setFoodLevel(20);
 			p.setHealth(20);
 			p.setAllowFlight(true);
-			p.setScoreboard(new Scoreboard().scoreboardNormalCreate(p));
+			new ScoreboardManager(p);
 			p.teleport(Main.getInstance().getSpawn());
 			p.getOpenInventory().getBottomInventory().clear();
 			p.getOpenInventory().getTopInventory().clear();
@@ -159,22 +155,6 @@ public class Main extends JavaPlugin {
 		votersInstance.initialize();
 	}
 	
-	private void updateScoreboards() {
-		new BukkitRunnable() {
-			@Override
-			public void run() {
-				for(Player p : Bukkit.getOnlinePlayers()) {
-					if(Fighter.getByPlayer(p) == null) {
-						Scoreboard.linesUpdate(p);
-					}
-					else {
-						BattleBoxBoard.linesUpdate(p);
-					}
-				}
-			}
-		}.runTaskTimerAsynchronously(Main.getInstance(), 0, 1);
-	}
-	
 	private void initializeCommands() {
 		this.getCommand("battlebox").setExecutor(new BattleBoxCommand());
 		this.getCommand("setupplayer").setExecutor(new SetupPlayer());
@@ -212,7 +192,6 @@ public class Main extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new ServerSelector(), this);
 		Bukkit.getPluginManager().registerEvents(new HelpfulMenu(), this);
 		Bukkit.getPluginManager().registerEvents(new HelpCommandsMenu(), this);
-		Bukkit.getPluginManager().registerEvents(new Scoreboard(), this);
 	}
 	
 	private void stopNPCs() {

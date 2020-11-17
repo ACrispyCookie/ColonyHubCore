@@ -3,6 +3,8 @@ package net.colonymc.colonyhubcore.util;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import net.colonymc.colonyhubcore.scoreboard.ScoreboardManager;
+import net.minecraft.server.v1_8_R3.Scoreboard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -43,6 +45,7 @@ public class JoinListener implements Listener {
 		p.getInventory().setItem(2, new ItemStackBuilder(Material.GOLD_AXE).name("&5&lEnable PvP Mode &7(Right-Click)").addTag("type", new NBTTagString("axe")).glint(true).unbreakable(true).addFlag(ItemFlag.HIDE_UNBREAKABLE).build());
 		p.getInventory().setItem(4, new ItemStackBuilder(Material.ENDER_PEARL).name("&5&lEnder Butt &7(Right-Click)").addTag("type", new NBTTagString("pearl")).glint(true).build());
 		p.getInventory().setItem(8, new ItemStackBuilder(Material.INK_SACK).name("&5&lPlayer Visibility &7(Right-Click)").addTag("type", new NBTTagString("visibility")).durability((short) 10).build());
+		new ScoreboardManager(p);
 		checkVisibility(p);
 		e.setJoinMessage(null);
 		sendMotd(p);

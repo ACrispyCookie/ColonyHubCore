@@ -1,11 +1,11 @@
 package net.colonymc.colonyhubcore.commands;
 
 import net.colonymc.colonyhubcore.Main;
+import net.colonymc.colonyhubcore.scoreboard.ScoreboardManager;
 import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,7 +15,6 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
 import net.colonymc.colonyhubcore.MainMessages;
-import net.colonymc.colonyhubcore.scoreboard.Scoreboard;
 import net.minecraft.server.v1_8_R3.NBTTagString;
 
 public class SetupPlayer implements CommandExecutor {
@@ -66,7 +65,7 @@ public class SetupPlayer implements CommandExecutor {
 		p.setFoodLevel(20);
 		p.setHealth(20);
 		p.setAllowFlight(true);
-		p.setScoreboard(new Scoreboard().scoreboardNormalCreate(p));
+		ScoreboardManager.getByPlayer(p).setType(ScoreboardManager.SCOREBOARD_TYPE.MAIN);
 		p.teleport(Main.getInstance().getSpawn());
 		p.getOpenInventory().getBottomInventory().clear();
 		p.getOpenInventory().getTopInventory().clear();
