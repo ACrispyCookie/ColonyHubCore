@@ -13,6 +13,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="module" module-name="colonyspigotapi" scope="PROVIDED" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: net.colonymc:colonybasicutils:1.0-SNAPSHOT" level="project" />
     <orderEntry type="module" module-name="colonyapi" scope="PROVIDED" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.zaxxer:HikariCP:3.4.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />

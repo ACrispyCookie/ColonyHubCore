@@ -22,7 +22,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import net.colonymc.colonyhubcore.Main;
-import net.colonymc.colonyspigotapi.player.ColonyPlayer;
+import net.colonymc.colonyspigotapi.api.player.ColonyPlayer;
 import net.colonymc.colonyhubcore.fun.battlebox.Fighter;
 
 public class DoubleJumpListener implements Listener {

@@ -3,7 +3,7 @@ package net.colonymc.colonyhubcore.fun.battlebox;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import net.colonymc.colonyspigotapi.player.ScoreboardManager;
+import net.colonymc.colonyspigotapi.api.player.visuals.ScoreboardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -31,9 +31,9 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-import net.colonymc.colonyspigotapi.player.ColonyPlayer;
-import net.colonymc.colonyspigotapi.player.Title;
-import net.colonymc.colonyspigotapi.player.TitleAction;
+import net.colonymc.colonyspigotapi.api.player.ColonyPlayer;
+import net.colonymc.colonyspigotapi.api.player.visuals.Title;
+import net.colonymc.colonyspigotapi.api.player.visuals.TitleAction;
 import net.colonymc.colonyhubcore.Main;
 import net.colonymc.colonyhubcore.commands.SetupPlayer;
 import net.colonymc.colonyhubcore.fun.pvpmode.PvpMode;

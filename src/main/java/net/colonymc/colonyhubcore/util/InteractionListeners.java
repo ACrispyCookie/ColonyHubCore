@@ -17,6 +17,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerFishEvent.State;
@@ -25,7 +26,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
-import net.colonymc.colonyspigotapi.itemstacks.NBTItems;
+import net.colonymc.colonyspigotapi.api.itemstack.ItemStackNBT;
 import net.colonymc.colonyhubcore.commands.BuilderModeCommand;
 import net.colonymc.colonyhubcore.fun.pvpmode.PvpMode;
 
@@ -123,7 +124,8 @@ public class InteractionListeners implements Listener {
 	public void onClick(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();
 		if(e.getInventory() != null) {
-			if(!BuilderModeCommand.builderMode.contains(p) && !PvpMode.isPvping(p) && !p.hasPermission("*")) {
+			if(!BuilderModeCommand.builderMode.contains(p) && !PvpMode.isPvping(p) && !p.hasPermission("*") &&
+					(p.getGameMode() != GameMode.CREATIVE && e.getInventory().getType() != InventoryType.CREATIVE && e.getInventory().getType() != InventoryType.PLAYER)) {
 				e.setCancelled(true);
 			}
 		}
@@ -136,7 +138,7 @@ public class InteractionListeners implements Listener {
 			Player damaged = (Player) e.getEntity();
 			if(!PvpMode.isPvping(damager) || !PvpMode.isPvping(damaged)) {
 				e.setCancelled(true);
-				if(damager.getItemInHand().getType() != Material.AIR && NBTItems.hasTag(damager.getItemInHand(), "type") && NBTItems.getString(damager.getItemInHand(), "type").equals("axe")) {
+				if(damager.getItemInHand().getType() != Material.AIR && ItemStackNBT.hasTag(damager.getItemInHand(), "type") && ItemStackNBT.getString(damager.getItemInHand(), "type").equals("axe")) {
 					damager.sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &cRight-click the axe to enable your PvP-mode in order to damage other players!"));
 				}
 			}

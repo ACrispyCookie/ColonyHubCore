@@ -3,7 +3,7 @@ package net.colonymc.colonyhubcore.util;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import net.colonymc.colonyspigotapi.player.ScoreboardManager;
+import net.colonymc.colonyspigotapi.api.player.visuals.ScoreboardManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -21,10 +21,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
-import net.colonymc.colonyspigotapi.messages.Message;
-import net.colonymc.colonyspigotapi.player.Title;
-import net.colonymc.colonyspigotapi.player.TitleAction;
+import net.colonymc.colonyspigotapi.api.itemstack.ItemStackBuilder;
+import net.colonymc.colonyspigotapi.api.player.visuals.ChatMessage;
+import net.colonymc.colonyspigotapi.api.player.visuals.Title;
+import net.colonymc.colonyspigotapi.api.player.visuals.TitleAction;
 import net.colonymc.colonyapi.database.MainDatabase;
 import net.colonymc.colonyhubcore.Main;
 import net.colonymc.colonyhubcore.util.items.VisibilityListener;
@@ -68,8 +68,8 @@ public class JoinListener implements Listener {
 	private void sendMotd(Player p) {
 		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&d&m*-*&f&m-*-*-*-&d&m*-*-*-*-*-*-&f&m*-*-*&d&m-*-*-*-*-*-*&f&m-*-*-*-&d&m*-*"));
 		p.sendMessage(ChatColor.translateAlternateColorCodes('&', " "));
-		new Message("&fWelcome, &6&l" + p.getName() + " &fto &d&lColony&f&lMC").addRecipient(p).centered(true).send();
-		new Message("&7&l&o{{ &7One of the best networks  &7&l&o}}").addRecipient(p).centered(true).send();
+		new ChatMessage("&fWelcome, &6&l" + p.getName() + " &fto &d&lColony&f&lMC").addRecipient(p).centered(true).send();
+		new ChatMessage("&7&l&o{{ &7One of the best networks  &7&l&o}}").addRecipient(p).centered(true).send();
 		p.sendMessage(ChatColor.translateAlternateColorCodes('&', " "));
 		p.sendMessage(ChatColor.translateAlternateColorCodes('&', " "));
 		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&f(&d-&f)         &d&l* &f&lWEBSITE &dhttps://colonymc.net"));

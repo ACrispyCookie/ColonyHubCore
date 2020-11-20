@@ -11,7 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.Plugin;
 
-import net.colonymc.colonyspigotapi.messages.Message;
+import net.colonymc.colonyspigotapi.api.player.visuals.ChatMessage;
 
 public class PluginCommand implements CommandExecutor, Listener {
 
@@ -20,13 +20,13 @@ public class PluginCommand implements CommandExecutor, Listener {
 		if(sender instanceof Player) {
 			Player p = (Player) sender;
 			if(!p.hasPermission("*")) {
-				new Message("&5&lCustom Plugins").addRecipient(p).centered(true).send();
+				new ChatMessage("&5&lCustom Plugins").addRecipient(p).centered(true).send();
 				p.sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &dColonyHubCore: &fThis plugin is responsible for everything that is unique to this lobby!\n"
 						+ " &5&l» &dColonyModerationSystem: &fThis plugin is responsible for making moderation super easy on the whole network!\n"
 						+ " &5&l» &dColonyVotes: &fThis plugin is responsible for delivering every vote correctly!"));
 			}
 			else {
-				new Message("&5&lAll Plugins (" + Bukkit.getPluginManager().getPlugins().length + ")").addRecipient(p).centered(true).send();
+				new ChatMessage("&5&lAll Plugins (" + Bukkit.getPluginManager().getPlugins().length + ")").addRecipient(p).centered(true).send();
 				StringBuilder message = new StringBuilder();
 				int i = 0;
 				for(Plugin pl : Bukkit.getPluginManager().getPlugins()) {

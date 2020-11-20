@@ -15,8 +15,8 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import net.colonymc.colonyspigotapi.Main;
-import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
-import net.colonymc.colonyspigotapi.itemstacks.SkullItemBuilder;
+import net.colonymc.colonyspigotapi.api.itemstack.ItemStackBuilder;
+import net.colonymc.colonyspigotapi.api.itemstack.SkullItemBuilder;
 
 public class HelpfulMenu implements Listener, InventoryHolder, CommandExecutor {
 

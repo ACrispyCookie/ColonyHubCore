@@ -12,9 +12,9 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
-import net.colonymc.colonyspigotapi.player.Title;
-import net.colonymc.colonyspigotapi.player.TitleAction;
+import net.colonymc.colonyspigotapi.api.itemstack.ItemStackBuilder;
+import net.colonymc.colonyspigotapi.api.player.visuals.Title;
+import net.colonymc.colonyspigotapi.api.player.visuals.TitleAction;
 import net.colonymc.colonyhubcore.commands.SetupPlayer;
 
 public class Team {

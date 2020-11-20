@@ -20,15 +20,16 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
-import net.colonymc.colonyspigotapi.itemstacks.NBTItems;
-import net.colonymc.colonyspigotapi.player.ColonyPlayer;
+import net.colonymc.colonyspigotapi.api.itemstack.ItemStackBuilder;
+import net.colonymc.colonyspigotapi.api.itemstack.ItemStackNBT;
+import net.colonymc.colonyspigotapi.api.player.ColonyPlayer;
 import net.colonymc.colonyhubcore.Main;
 import net.minecraft.server.v1_8_R3.NBTTagString;
 
 public class PvpMode implements Listener {
 	
 	static final ArrayList<Player> pvpPlayers = new ArrayList<>();
+	static final ArrayList<Player> isOnCountdown = new ArrayList<>();
 	static final HashMap<Player, ItemStack[]> inventories = new HashMap<>();
 	static final HashMap<Player, ItemStack[]> armors = new HashMap<>();
 	
@@ -42,6 +43,7 @@ public class PvpMode implements Listener {
 	}
 	
 	public void enablePvpMode(Player p) {
+		isOnCountdown.add(p);
 		new BukkitRunnable() {
 			int i = 3;
 			@Override
@@ -69,6 +71,7 @@ public class PvpMode implements Listener {
 					p.playSound(p.getLocation(), Sound.CLICK, 2, 1);
 				}
 				else if(i == 0) {
+					isOnCountdown.remove(p);
 					pvpPlayers.add(p);
 					p.sendMessage(ChatColor.translateAlternateColorCodes('&', " &5&l» &fPvP is now &denabled&f!"));
 					p.playSound(p.getLocation(), Sound.EXPLODE, 2, 1);
@@ -100,19 +103,23 @@ public class PvpMode implements Listener {
 	public static boolean isPvping(Player p) {
 		return pvpPlayers.contains(p);
 	}
+
+	public static boolean isOnCountdown(Player p) {
+		return isOnCountdown.contains(p);
+	}
 	
 	@EventHandler
 	public void onClick(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
 		if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 			if(p.getItemInHand().getType() != Material.AIR) {
-				if(NBTItems.hasTag(p.getItemInHand(), "type") && NBTItems.getString(p.getItemInHand(), "type").equals("axe")) {
+				if(ItemStackNBT.hasTag(p.getItemInHand(), "type") && ItemStackNBT.getString(p.getItemInHand(), "type").equals("axe")) {
 					e.setCancelled(true);
-					if(!PvpMode.isPvping(p)) {
+					if(!PvpMode.isPvping(p) && !PvpMode.isOnCountdown(p)) {
 						Main.getPvpInstance().enablePvpMode(p);
 					}
 				}
-				else if(NBTItems.hasTag(p.getItemInHand(), "type") && NBTItems.getString(p.getItemInHand(), "type").equals("cancelPvp")) {
+				else if(ItemStackNBT.hasTag(p.getItemInHand(), "type") && ItemStackNBT.getString(p.getItemInHand(), "type").equals("cancelPvp")) {
 					e.setCancelled(true);
 					if(PvpMode.isPvping(p)) {
 						if(CombatTag.getCombat(p) == null) {

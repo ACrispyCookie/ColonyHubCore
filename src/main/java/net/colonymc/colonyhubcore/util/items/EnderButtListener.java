@@ -15,7 +15,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import net.colonymc.colonyspigotapi.itemstacks.NBTItems;
+import net.colonymc.colonyspigotapi.api.itemstack.ItemStackNBT;
 import net.colonymc.colonyhubcore.Main;
 
 public class EnderButtListener implements Listener {
@@ -49,7 +49,7 @@ public class EnderButtListener implements Listener {
 	    if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
 	      Player player = event.getPlayer();
 	      ItemStack itemStack = player.getItemInHand();
-	      if(itemStack.getType() == Material.ENDER_PEARL && NBTItems.hasTag(itemStack, "type") && NBTItems.getString(itemStack, "type").equals("pearl")) {
+	      if(itemStack.getType() == Material.ENDER_PEARL && ItemStackNBT.hasTag(itemStack, "type") && ItemStackNBT.getString(itemStack, "type").equals("pearl")) {
 	        event.setCancelled(true);
 	        event.setUseItemInHand(Event.Result.DENY);
 	        event.setUseInteractedBlock(Event.Result.DENY);

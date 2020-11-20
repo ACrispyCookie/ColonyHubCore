@@ -18,9 +18,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.colonymc.colonyhubcore.Main;
-import net.colonymc.colonyspigotapi.itemstacks.InventoryUtils;
-import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
-import net.colonymc.colonyspigotapi.itemstacks.NBTItems;
+import net.colonymc.colonyspigotapi.api.inventory.InventoryUtils;
+import net.colonymc.colonyspigotapi.api.itemstack.ItemStackBuilder;
+import net.colonymc.colonyspigotapi.api.itemstack.ItemStackNBT;
 
 public class ServerSelector implements Listener, InventoryHolder, CommandExecutor  {
 
@@ -68,7 +68,7 @@ public class ServerSelector implements Listener, InventoryHolder, CommandExecuto
 	public void onRightClick(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
 		if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-			if(p.getItemInHand() != null && p.getItemInHand().hasItemMeta() && p.getItemInHand().getType() == Material.NETHER_STAR && NBTItems.hasTag(p.getItemInHand(), "type") && NBTItems.getString(p.getItemInHand(), "type").equals("selector")) {
+			if(p.getItemInHand() != null && p.getItemInHand().hasItemMeta() && p.getItemInHand().getType() == Material.NETHER_STAR && ItemStackNBT.hasTag(p.getItemInHand(), "type") && ItemStackNBT.getString(p.getItemInHand(), "type").equals("selector")) {
 				p.openInventory(new ServerSelector(p).getInventory());
 			}
 		}

@@ -15,8 +15,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 
-import net.colonymc.colonyspigotapi.itemstacks.ItemStackBuilder;
-import net.colonymc.colonyspigotapi.itemstacks.NBTItems;
+import net.colonymc.colonyspigotapi.api.itemstack.ItemStackBuilder;
+import net.colonymc.colonyspigotapi.api.itemstack.ItemStackNBT;
 import net.colonymc.colonyapi.database.MainDatabase;
 import net.minecraft.server.v1_8_R3.NBTTagString;
 
@@ -29,7 +29,7 @@ public class VisibilityListener implements Listener {
 		Player p = e.getPlayer();
 		if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 			ItemStack i = p.getItemInHand();
-			if(i != null && i.hasItemMeta() && NBTItems.hasTag(i, "type") && NBTItems.getString(i, "type").equals("visibility")) {
+			if(i != null && i.hasItemMeta() && ItemStackNBT.hasTag(i, "type") && ItemStackNBT.getString(i, "type").equals("visibility")) {
 				toggleVisibility(p);
 			}
 		}
