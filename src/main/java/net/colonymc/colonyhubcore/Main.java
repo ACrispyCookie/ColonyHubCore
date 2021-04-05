@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import net.colonymc.colonyspigotapi.Placeholders;
 import net.colonymc.colonyspigotapi.api.player.visuals.ScoreboardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -68,14 +69,11 @@ public class Main extends JavaPlugin {
 			for(Plugin pl : Bukkit.getPluginManager().getPlugins()) {
 				pluginNames.add(pl.getName());
 			}
-			if(!pluginNames.contains("ColonySpigotAPI") || !pluginNames.contains("PlaceholderAPI") || !pluginNames.contains("Citizens")) {
+			if(!pluginNames.contains("ColonySpigotAPI") || !pluginNames.contains("Citizens")) {
 				System.out.println(" » The plugin is missing some dependencies! It won't enable!");
 				Bukkit.getPluginManager().disablePlugin(Main.this);
 				return;
 			}
-			if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-				new Placeholders(this).register();
-	        }
 			setupConfigs();
 			setupSpawn();
 			setupConditions();

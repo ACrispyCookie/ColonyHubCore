@@ -106,7 +106,6 @@ public class CookieCommand implements CommandExecutor, Listener{
     	}
     	return false;
     }
-	
  
 }
 	

@@ -124,8 +124,11 @@ public class InteractionListeners implements Listener {
 	public void onClick(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();
 		if(e.getInventory() != null) {
-			if(!BuilderModeCommand.builderMode.contains(p) && !PvpMode.isPvping(p) && !p.hasPermission("*") &&
-					(p.getGameMode() != GameMode.CREATIVE && e.getInventory().getType() != InventoryType.CREATIVE && e.getInventory().getType() != InventoryType.PLAYER)) {
+			if(!BuilderModeCommand.builderMode.contains(p)
+					&& (!(PvpMode.isPvping(p) || PvpMode.isOnCountdown(p)) || e.getClickedInventory().getType() != InventoryType.PLAYER)
+					&& !p.hasPermission("*")
+					&& (p.getGameMode() != GameMode.CREATIVE && e.getClickedInventory().getType() != InventoryType.CREATIVE && e.getClickedInventory().getType() != InventoryType.PLAYER)
+			) {
 				e.setCancelled(true);
 			}
 		}
