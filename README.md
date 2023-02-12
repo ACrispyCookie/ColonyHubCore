@@ -1,5 +1,5 @@
 # ColonyHubCore
-A basic core for every lobby server.
+A basic core for every ColonyMC lobby server.
 
 Features:
   - Refreshing "Latest voters/Latest Donators" NPCs
