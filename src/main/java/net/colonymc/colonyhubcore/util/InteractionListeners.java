@@ -26,7 +26,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
-import net.colonymc.colonyspigotapi.api.itemstack.ItemStackNBT;
+import net.colonymc.colonyspigotlib.lib.itemstack.ItemStackNBT;
 import net.colonymc.colonyhubcore.commands.BuilderModeCommand;
 import net.colonymc.colonyhubcore.fun.pvpmode.PvpMode;
 

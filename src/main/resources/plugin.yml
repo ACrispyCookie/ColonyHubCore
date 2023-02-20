@@ -1,7 +1,7 @@
 name: ColonyHubCore
 version: 1.0
 author: ACrispyCookie
-depends: [Citizens, PlaceholderAPI, ColonySpigotAPI, ColonyAPI]
+depends: [Citizens, PlaceholderAPI, ColonySpigotLib, ColonyAPI]
 main: net.colonymc.colonyhubcore.Main
 commands:
   message:

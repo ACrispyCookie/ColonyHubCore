@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import net.colonymc.colonyspigotapi.Placeholders;
-import net.colonymc.colonyspigotapi.api.player.visuals.ScoreboardManager;
+import net.colonymc.colonyspigotlib.Placeholders;
+import net.colonymc.colonyspigotlib.lib.player.visuals.ScoreboardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -17,8 +17,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import net.colonymc.colonyspigotapi.api.itemstack.ItemStackBuilder;
-import net.colonymc.colonyspigotapi.api.holograms.PublicHologram;
+import net.colonymc.colonyspigotlib.lib.itemstack.ItemStackBuilder;
+import net.colonymc.colonyspigotlib.lib.holograms.PublicHologram;
 import net.colonymc.colonyapi.database.MainDatabase;
 import net.colonymc.colonyhubcore.commands.AboutCommand;
 import net.colonymc.colonyhubcore.commands.BuilderModeCommand;
@@ -69,7 +69,7 @@ public class Main extends JavaPlugin {
 			for(Plugin pl : Bukkit.getPluginManager().getPlugins()) {
 				pluginNames.add(pl.getName());
 			}
-			if(!pluginNames.contains("ColonySpigotAPI") || !pluginNames.contains("Citizens")) {
+			if(!pluginNames.contains("ColonySpigotLib") || !pluginNames.contains("Citizens")) {
 				System.out.println(" » The plugin is missing some dependencies! It won't enable!");
 				Bukkit.getPluginManager().disablePlugin(Main.this);
 				return;
@@ -94,7 +94,7 @@ public class Main extends JavaPlugin {
 			for(Plugin pl : Bukkit.getPluginManager().getPlugins()) {
 				pluginNames.add(pl.getName());
 			}
-			if(!pluginNames.contains("ColonySpigotAPI") || !pluginNames.contains("PlaceholderAPI") || !pluginNames.contains("Citizens")) {
+			if(!pluginNames.contains("ColonySpigotLib") || !pluginNames.contains("PlaceholderAPI") || !pluginNames.contains("Citizens")) {
 				System.out.println(" » ColonyHubCore has been sucessfully disabled!");
 				return;
 			}

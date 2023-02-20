@@ -18,7 +18,7 @@ import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.event.NPCLeftClickEvent;
 import net.citizensnpcs.api.event.NPCRightClickEvent;
 import net.citizensnpcs.api.npc.NPC;
-import net.colonymc.colonyspigotapi.api.holograms.PublicHologram;
+import net.colonymc.colonyspigotlib.lib.holograms.PublicHologram;
 import net.colonymc.colonyapi.database.MainDatabase;
 import net.colonymc.colonyhubcore.Main;
 

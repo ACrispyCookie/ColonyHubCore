@@ -18,9 +18,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.colonymc.colonyhubcore.Main;
-import net.colonymc.colonyspigotapi.api.inventory.InventoryUtils;
-import net.colonymc.colonyspigotapi.api.itemstack.ItemStackBuilder;
-import net.colonymc.colonyspigotapi.api.itemstack.ItemStackNBT;
+import net.colonymc.colonyspigotlib.lib.inventory.InventoryUtils;
+import net.colonymc.colonyspigotlib.lib.itemstack.ItemStackBuilder;
+import net.colonymc.colonyspigotlib.lib.itemstack.ItemStackNBT;
 
 public class ServerSelector implements Listener, InventoryHolder, CommandExecutor  {
 

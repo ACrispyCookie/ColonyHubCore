@@ -3,7 +3,7 @@ package net.colonymc.colonyhubcore.util;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import net.colonymc.colonyspigotapi.api.player.visuals.ScoreboardManager;
+import net.colonymc.colonyspigotlib.lib.player.visuals.ScoreboardManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -21,10 +21,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import net.colonymc.colonyspigotapi.api.itemstack.ItemStackBuilder;
-import net.colonymc.colonyspigotapi.api.player.visuals.ChatMessage;
-import net.colonymc.colonyspigotapi.api.player.visuals.Title;
-import net.colonymc.colonyspigotapi.api.player.visuals.TitleAction;
+import net.colonymc.colonyspigotlib.lib.itemstack.ItemStackBuilder;
+import net.colonymc.colonyspigotlib.lib.player.visuals.ChatMessage;
+import net.colonymc.colonyspigotlib.lib.player.visuals.Title;
+import net.colonymc.colonyspigotlib.lib.player.visuals.TitleAction;
 import net.colonymc.colonyapi.database.MainDatabase;
 import net.colonymc.colonyhubcore.Main;
 import net.colonymc.colonyhubcore.util.items.VisibilityListener;

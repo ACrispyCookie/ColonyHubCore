@@ -14,7 +14,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import net.colonymc.colonyhubcore.Main;
-import net.colonymc.colonyspigotapi.api.itemstack.ItemStackBuilder;
+import net.colonymc.colonyspigotlib.lib.itemstack.ItemStackBuilder;
 
 public class HelpCommandsMenu implements Listener, InventoryHolder, CommandExecutor {
 

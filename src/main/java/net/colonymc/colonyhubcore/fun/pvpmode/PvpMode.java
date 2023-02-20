@@ -20,9 +20,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import net.colonymc.colonyspigotapi.api.itemstack.ItemStackBuilder;
-import net.colonymc.colonyspigotapi.api.itemstack.ItemStackNBT;
-import net.colonymc.colonyspigotapi.api.player.ColonyPlayer;
+import net.colonymc.colonyspigotlib.lib.itemstack.ItemStackBuilder;
+import net.colonymc.colonyspigotlib.lib.itemstack.ItemStackNBT;
+import net.colonymc.colonyspigotlib.lib.player.ColonyPlayer;
 import net.colonymc.colonyhubcore.Main;
 import net.minecraft.server.v1_8_R3.NBTTagString;
 
